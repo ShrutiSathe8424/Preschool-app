@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Sprout — design tokens
+   A calm, professional palette for the grown-up dashboards (Admin, Teacher,
+   Parent) with a distinct, brighter register reserved for Child Mode.
+   ========================================================================== */
+
+:root {
+  /* --- Color: core --- */
+  --ink-900: #101a2e;
+  --ink-800: #16223d;
+  --ink-700: #1e2d4d;
+  --ink-500: #48587a;
+  --ink-300: #8b96b3;
+
+  --meadow-700: #146856;
+  --meadow-600: #1a7d67;
+  --meadow-500: #1f8a70;
+  --meadow-400: #2ba884;
+  --meadow-100: #dcf1e7;
+  --meadow-50: #eef8f3;
+
+  --sunbeam-600: #d98a12;
+  --sunbeam-500: #f5a623;
+  --sunbeam-100: #fdedcf;
+  --sunbeam-50: #fef7e9;
+
+  --blush-600: #d84a4a;
+  --blush-500: #ef5f5f;
+  --blush-100: #fbe1e1;
+  --blush-50: #fdf1f1;
+
+  --sky-500: #3b7dd8;
+  --sky-100: #e0ebfb;
+
+  --paper: #f6f6f3;
+  --surface: #ffffff;
+  --mist-200: #e9ebe6;
+  --mist-300: #dde0da;
+
+  /* --- Color: semantic --- */
+  --color-bg: var(--paper);
+  --color-surface: var(--surface);
+  --color-border: var(--mist-300);
+  --color-text: var(--ink-900);
+  --color-text-muted: var(--ink-500);
+  --color-text-faint: var(--ink-300);
+  --color-primary: var(--meadow-500);
+  --color-primary-strong: var(--meadow-700);
+  --color-primary-soft: var(--meadow-50);
+  --color-accent: var(--sunbeam-500);
+  --color-danger: var(--blush-600);
+  --color-danger-soft: var(--blush-50);
+  --color-info: var(--sky-500);
+
+  /* --- Type --- */
+  --font-display: "Lexend", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* --- Radius / shadow / spacing --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 26, 46, 0.06);
+  --shadow-md: 0 6px 20px rgba(16, 26, 46, 0.07);
+  --shadow-lg: 0 16px 40px rgba(16, 26, 46, 0.12);
+
+  --sidebar-w: 236px;
+}
+
+/* Role accents — set on the app shell wrapper per role, consumed by
+   components underneath via var(--role-accent) so every module keeps one
+   consistent language while still reading as "its own" area of the app. */
+.role-admin { --role-accent: var(--ink-800); --role-accent-soft: #eef0f5; }
+.role-teacher { --role-accent: var(--meadow-600); --role-accent-soft: var(--meadow-50); }
+.role-parent { --role-accent: var(--sunbeam-600); --role-accent-soft: var(--sunbeam-50); }
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink-900);
+  margin: 0;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+a {
+  color: var(--color-primary-strong);
+}
+
+::selection {
+  background: var(--meadow-100);
+}
+
+:focus-visible {
+  outline: 2px solid var(--meadow-500);
+  outline-offset: 2px;
+}
+
+/* Respect reduced-motion preferences everywhere in the app */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes sprout-pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sprout-rise {
+  from { transform: translateY(6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes sprout-spin {
+  to { transform: rotate(360deg); }
+}
